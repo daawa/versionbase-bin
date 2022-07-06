@@ -5,6 +5,13 @@
 <title>菜鸟教程(runoob.com)</title>
 
 <style>
+body {
+  margin-top: 60px;
+  margin-bottom: 20px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
 .preview {
   flex: 1;
   margin-bottom: 20px;
@@ -39,7 +46,7 @@ function myFunction() {
 
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            console.log( xhttp.responseText );
+            //console.log( this.responseText );
         }
     };
     
@@ -48,7 +55,7 @@ function myFunction() {
         document.getElementById("response").innerHTML="请求出错" + error.toString() + " error status:" + xhr.statusText;
     }
     
-    var rql = "http://0.0.0.0:8080/versionbase/query?versionbase={\"version_base\":\"" + x+ "\"}"
+    var rql = "/versionbase/query?versionbase={\"version_base\":\"" + x+ "\"}"
     rql = encodeURI(rql)
     //document.getElementById("error").innerHTML = rql;
     
