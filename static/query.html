@@ -3,82 +3,38 @@
 <head>
 <meta charset="utf-8">
 <title>version base</title>
+<link rel="stylesheet" href="/assets/query.css">
+<script type="text/javascript" src="/assets/query.js"></script>
+<script type="text/javascript">
 
-<style>
-body {
-  margin-top: 60px;
-  margin-bottom: 20px;
-  margin-left: 100px;
-  margin-right: 100px;
-}
-
-.preview {
-  flex: 1;
-  margin-bottom: 20px;
-  padding: 20px;
-  background: #f5fcff;
-  border: 1px solid #d3eeff;
-  border-radius: 3px;
-  margin: 0;
-}
-</style>
-
-<script>
-function searchVersionBase() {
+function doSearch() {
     var x, text;
-
     x = document.getElementById("versionbase").value;
-    /*
-    if (x==null || x==""){
-        document.getElementById("error").innerHTML = "param can't be empty";
-        return false;
-    } else {*/
-    document.getElementById("error").innerHTML = "searching...";
-    
-    var xhr = new XMLHttpRequest();
-    xhr.onload = function () {
-        document.getElementById("error").innerHTML = "";
-
-        var j = JSON.parse(xhr.responseText)
-        j = JSON.stringify(j, null, 4);
-        document.getElementById("response").innerHTML=j;
-    }
-
-    xhr.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            //console.log( this.responseText );
-        }
-    };
-    
-    xhr.onerror = function (error) {
-        console.error( error );
-        document.getElementById("response").innerHTML="请求出错" + error.toString() + " error status:" + xhr.statusText;
-    }
-    
-    var rql = "/versionbase/query?versionbase={\"version_base\":\"" + x+ "\"}"
-    rql = encodeURI(rql)
-    //document.getElementById("error").innerHTML = rql;
-    
-    xhr.open("GET", rql, true);
-    xhr.send();
-
-    /*} */ 
+    //console.log("on:",onSuccess)
+    searchAndRender(x, document.getElementById("result_container") )
 }
 
 </script>
+
+
 </head>
 <body>
 <p>input the version base name</p>
 <p>for query:</p>
 
 <input id="versionbase" type="text">
-<button type="button" onclick="searchVersionBase()">search</button>
+<button type="button" onclick="doSearch()">search</button>
 
 <p id="error"></p>
 
-<div class="preview">
-<pre  id="response"></pre>
+<div id="result_container">
+
 </div>
+
+<!--  
+<div class="preview">
+    <pre  id="response"></pre>
+</div> -->
 
 </body>
 </html>
